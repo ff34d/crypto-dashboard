@@ -4,7 +4,6 @@ const stylelintConfig = {
       "stylelint-config-standard",
       "stylelint-config-idiomatic-order",
       "stylelint-config-standard-scss",
-      "stylelint-config-recommended-vue/scss",
    ],
    plugins: ["stylelint-order", "stylelint-scss"],
    rules: {
