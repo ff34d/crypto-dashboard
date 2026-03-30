@@ -7,8 +7,8 @@ const stylelintConfig = {
    ],
    plugins: ["stylelint-order", "stylelint-scss"],
    rules: {
-      "custom-property-empty-line-before": null,
-      "selector-class-pattern": null,
+      "custom-property-empty-line-before": undefined,
+      "selector-class-pattern": undefined,
       "selector-pseudo-class-no-unknown": [
          true,
          {
