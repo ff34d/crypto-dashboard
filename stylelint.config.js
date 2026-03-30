@@ -15,6 +15,12 @@ const stylelintConfig = {
             ignorePseudoClasses: ["global"],
          },
       ],
+      "scss/at-rule-no-unknown": [
+         true,
+         {
+            ignoreAtRules: ["theme"],
+         },
+      ],
    },
 }
 
