@@ -18,6 +18,12 @@ const eslintConfig = defineConfig([
 
    prettierRecommended,
 
+   {
+      rules: {
+         "unicorn/prevent-abbreviations": "off",
+      },
+   },
+
    globalIgnores([".next/**", "out/**", "build/**", "node_modules/**", "next-env.d.ts"]),
 ])
 
