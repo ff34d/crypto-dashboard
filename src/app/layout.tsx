@@ -1,4 +1,4 @@
-import { cn } from "@shared/ui/shadcn"
+import { cn } from "@shared/ui/shadcn/lib/utils"
 import type { Metadata } from "next"
 import { Geist } from "next/font/google"
 import "./globals.css"
@@ -19,7 +19,9 @@ export default function RootLayout({
       <html
          lang="en"
          className={cn("font-sans", geist.variable, "dark")}>
-         <body>{children}</body>
+         <body>
+            <main>{children}</main>
+         </body>
       </html>
    )
 }
