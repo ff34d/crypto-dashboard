@@ -2,10 +2,11 @@ import { cn } from "@shared/ui/shadcn/lib/utils"
 import { SidebarProvider } from "@shared/ui/shadcn/ui/sidebar"
 import { SidebarWidget } from "@widgets/SidebarWidget"
 import type { Metadata } from "next"
-import { Geist } from "next/font/google"
+import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
+const geist = Geist({ subsets: ["latin"], variable: "--font-serif" })
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-sans" })
 
 export const metadata: Metadata = {
    title: "Crypto",
@@ -20,7 +21,7 @@ export default function RootLayout({
    return (
       <html
          lang="en"
-         className={cn("font-sans", geist.variable, "dark")}>
+         className={cn("font-sans", geistMono.variable, geist.variable, "dark")}>
          <body>
             <SidebarProvider>
                <SidebarWidget />

@@ -1,18 +1,27 @@
-import { UserAuthorizedChip } from "@features/UserAuthorizedChip/ui"
-import { Sidebar, SidebarHeader } from "@shared/ui/shadcn/ui/sidebar"
-import React from "react"
+"use client"
+
+import { UserChip, useUserStore } from "@entities/User"
+import { LoginOAuthButton } from "@features/LoginOAuthButton"
+import { LogoutButton } from "@features/LogoutButton"
+import { Sidebar, SidebarContent, SidebarFooter } from "@shared/ui/shadcn/ui/sidebar"
 
 export function SidebarWidget() {
+   const user = useUserStore((s) => s.user)
+   const isAuthenticated = useUserStore((s) => s.isAuthenticated)
+
    return (
-      <Sidebar
-         style={
-            {
-               "--sidebar-width": "20rem",
-            } as React.CSSProperties
-         }>
-         <SidebarHeader>
-            <UserAuthorizedChip />
-         </SidebarHeader>
+      <Sidebar>
+         <SidebarContent>Menu</SidebarContent>
+
+         <SidebarFooter>
+            {isAuthenticated ? (
+               <UserChip data={user}>
+                  <LogoutButton />
+               </UserChip>
+            ) : (
+               <LoginOAuthButton />
+            )}
+         </SidebarFooter>
       </Sidebar>
    )
 }

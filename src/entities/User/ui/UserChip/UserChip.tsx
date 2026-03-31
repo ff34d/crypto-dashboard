@@ -10,7 +10,7 @@ import {
 } from "@shared/ui/shadcn/ui/item"
 
 interface Props {
-   data: IUser
+   data?: IUser
    children?: React.ReactNode
 }
 
