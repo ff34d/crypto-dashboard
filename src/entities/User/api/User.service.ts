@@ -1,14 +1,12 @@
-import { UserGoogleAuthResponse } from "@shared/_MOCKS"
-import { UserLoginOAuthResponse } from "../models"
+import { Routes } from "@shared/configs"
 
 class UserService {
-   async loginByOAuth(): Promise<UserLoginOAuthResponse> {
-      await new Promise((res) => setTimeout(res, 1000))
-      return UserGoogleAuthResponse
+   async loginByOAuth(): Promise<void> {
+      globalThis.location.href = Routes.OAUTH_LOGIN
    }
 
    async logout(): Promise<void> {
-      await new Promise((res) => setTimeout(res, 1000))
+      globalThis.location.href = Routes.OAUTH_LOGOUT
    }
 }
 

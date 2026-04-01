@@ -1,10 +1,16 @@
 import { IUser } from "@entities/User/models"
-import { Avatar, AvatarFallback, AvatarImage } from "@shared/ui/shadcn/ui/avatar"
+import {
+   Avatar,
+   AvatarBadge,
+   AvatarFallback,
+   AvatarImage,
+} from "@shared/ui/shadcn/ui/avatar"
 import {
    Item,
    ItemActions,
    ItemContent,
    ItemDescription,
+   ItemFooter,
    ItemMedia,
    ItemTitle,
 } from "@shared/ui/shadcn/ui/item"
@@ -19,17 +25,23 @@ export const UserChip: React.FC<Props> = ({ data, children }) => {
       <Item variant="muted">
          <ItemMedia variant="image">
             <Avatar size="lg">
+               <AvatarImage
+                  src={data?.picture}
+                  alt={data?.nickname}
+               />
                <AvatarFallback>U</AvatarFallback>
-               <AvatarImage src={data?.image} />
+               <AvatarBadge className="bg-green-600" />
             </Avatar>
          </ItemMedia>
 
          <ItemContent>
-            <ItemTitle>{data?.name}</ItemTitle>
+            <ItemTitle>{data?.nickname}</ItemTitle>
             <ItemDescription>{data?.email}</ItemDescription>
          </ItemContent>
 
-         {children && <ItemActions>{children}</ItemActions>}
+         <ItemFooter>
+            {children && <ItemActions className="ml-auto">{children}</ItemActions>}
+         </ItemFooter>
       </Item>
    )
 }

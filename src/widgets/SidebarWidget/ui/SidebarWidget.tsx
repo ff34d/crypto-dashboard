@@ -7,7 +7,7 @@ import { Sidebar, SidebarContent, SidebarFooter } from "@shared/ui/shadcn/ui/sid
 
 export function SidebarWidget() {
    const user = useUserStore((s) => s.user)
-   const isAuthenticated = useUserStore((s) => s.isAuthenticated)
+   const isAuthenticated = useUserStore((s) => s.isAuthorized)
 
    return (
       <Sidebar>

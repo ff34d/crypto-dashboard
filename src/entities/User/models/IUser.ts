@@ -1,5 +1,3 @@
-export interface IUser {
-   name: string
-   email: string
-   image?: string
-}
+import { User } from "@auth0/nextjs-auth0/types"
+
+export type IUser = User
