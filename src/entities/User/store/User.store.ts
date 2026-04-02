@@ -18,7 +18,7 @@ export const useUserStore = create<UserStore>((set) => ({
    },
    logout: async () => {
       await userService.logout()
-      return set({ user: undefined, isAuthorized: false })
+      set({ user: undefined, isAuthorized: false })
    },
    setUser: async (user) => {
       set({ user, isAuthorized: true })

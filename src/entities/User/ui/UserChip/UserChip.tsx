@@ -29,7 +29,9 @@ export const UserChip: React.FC<Props> = ({ data, children }) => {
                   src={data?.picture}
                   alt={data?.nickname}
                />
-               <AvatarFallback>U</AvatarFallback>
+               <AvatarFallback>
+                  {data?.nickname?.[0]?.toUpperCase() || "U"}
+               </AvatarFallback>
                <AvatarBadge className="bg-green-600" />
             </Avatar>
          </ItemMedia>
