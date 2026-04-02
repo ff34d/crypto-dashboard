@@ -12,7 +12,7 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-serif" })
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-sans" })
 
 export const metadata: Metadata = {
-   title: "Crypto",
+   title: "Crypto 👺",
    description: "Dashboard by crypto coins on Next.js",
 }
 

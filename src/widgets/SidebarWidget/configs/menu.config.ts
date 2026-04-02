@@ -10,4 +10,8 @@ export const menuConfig: MenuConfigItem[] = [
       to: Routes.MAIN,
       name: "Dashboard",
    },
+   {
+      to: Routes.SETTINGS,
+      name: "Settings",
+   },
 ]
