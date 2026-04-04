@@ -21,6 +21,8 @@ const eslintConfig = defineConfig([
    {
       rules: {
          "unicorn/prevent-abbreviations": "off",
+         "unicorn/filename-case": "off",
+         "unicorn/no-null": "off",
       },
    },
 

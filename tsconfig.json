@@ -20,11 +20,11 @@
          }
       ],
       "paths": {
-         "@pages/*": ["src/pages/*"],
-         "@widgets/*": ["src/widgets/*"],
-         "@shared/*": ["src/shared/*"],
          "@app/*": ["src/app/*"],
-         "@features/*": ["src/features/*"]
+         "@widgets/*": ["src/widgets/*"],
+         "@features/*": ["src/features/*"],
+         "@entities/*": ["src/entities/*"],
+         "@shared/*": ["src/shared/*"]
       }
    },
    "include": [
