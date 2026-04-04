@@ -23,6 +23,7 @@ const eslintConfig = defineConfig([
          "unicorn/prevent-abbreviations": "off",
          "unicorn/filename-case": "off",
          "unicorn/no-null": "off",
+         "unicorn/require-module-specifiers": "off",
       },
    },
 
