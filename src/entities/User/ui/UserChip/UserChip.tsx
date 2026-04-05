@@ -1,4 +1,4 @@
-import { IUser } from "@entities/User/models"
+import type { IUser } from "@entities/User/models"
 import {
    Avatar,
    AvatarBadge,

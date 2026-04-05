@@ -1,6 +1,7 @@
 "use client"
 
-import { IUser, useUserStore } from "@entities/User"
+import type { IUser } from "@entities/User"
+import { useUserStore } from "@entities/User"
 import { useEffect, useRef } from "react"
 
 interface Props {

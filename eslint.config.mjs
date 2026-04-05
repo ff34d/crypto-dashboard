@@ -23,10 +23,26 @@ const eslintConfig = defineConfig([
          "unicorn/prevent-abbreviations": "off",
          "unicorn/filename-case": "off",
          "unicorn/no-null": "off",
+         "unicorn/require-module-specifiers": "off",
+         "unicorn/no-abusive-eslint-disable": "off",
+         "@typescript-eslint/consistent-type-imports": [
+            "error",
+            {
+               prefer: "type-imports",
+               fixStyle: "separate-type-imports",
+            },
+         ],
       },
    },
 
-   globalIgnores([".next/**", "out/**", "build/**", "node_modules/**", "next-env.d.ts"]),
+   globalIgnores([
+      ".next/**",
+      "out/**",
+      "build/**",
+      "node_modules/**",
+      "next-env.d.ts",
+      "src/shared/ui/shadcn/**",
+   ]),
 ])
 
 export default eslintConfig

@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { userService } from "../api"
-import { IUser } from "../models"
+import type { IUser } from "../models"
 
 interface UserStore {
    user: IUser | undefined
