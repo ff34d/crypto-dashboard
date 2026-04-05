@@ -1,1 +1,2 @@
-export * from "./ApiEndpoint"
+export * from "./IApp"
+export * from "./ILogger"

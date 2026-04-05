@@ -1,4 +1,4 @@
-import { auth0 } from "@shared/lib"
+import { auth0 } from "@shared/lib/Auth"
 
 export async function proxy(request: Request) {
    const authResponse = await auth0.middleware(request)

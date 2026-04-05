@@ -1,5 +1,5 @@
 import { Auth0Provider } from "@auth0/nextjs-auth0/client"
-import { auth0 } from "@shared/lib"
+import { auth0 } from "@shared/lib/Auth"
 import { cn } from "@shared/ui/shadcn/lib/utils"
 import { SidebarProvider } from "@shared/ui/shadcn/ui/sidebar"
 import { SidebarWidget } from "@widgets/SidebarWidget"

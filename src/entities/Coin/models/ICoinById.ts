@@ -1,4 +1,4 @@
-import { ICoin } from "./ICoin"
+import type { ICoin } from "./ICoin"
 
 /**
  * Coin by id, with its details, market data, and other details.

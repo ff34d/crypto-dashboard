@@ -1,4 +1,4 @@
-import { ICoin } from "./ICoin"
+import type { ICoin } from "./ICoin"
 
 /**
  * Coin by market, with all the data you need to know about a coin market response.
