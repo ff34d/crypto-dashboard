@@ -1,5 +1,6 @@
 import type { ILogger } from "@shared/models"
 import type { Axios, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
+
 import type { IApiClient } from "../models"
 
 /**

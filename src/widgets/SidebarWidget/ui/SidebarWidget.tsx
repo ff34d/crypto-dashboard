@@ -1,8 +1,7 @@
-"use client"
-
-import { UserChip, useUserStore } from "@entities/User"
+import { UserChip } from "@entities/User"
 import { LoginOAuthButton } from "@features/LoginOAuthButton"
 import { LogoutButton } from "@features/LogoutButton"
+import { auth0 } from "@shared/lib/Auth"
 import { Button } from "@shared/ui/shadcn/ui/button"
 import {
    Sidebar,
@@ -14,13 +13,10 @@ import {
    SidebarMenuItem,
 } from "@shared/ui/shadcn/ui/sidebar"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { menuConfig } from "../configs"
 
-export function SidebarWidget() {
-   const user = useUserStore((s) => s.user)
-   const isAuthenticated = useUserStore((s) => s.isAuthorized)
-   const pathname = usePathname()
+export async function SidebarWidget() {
+   const session = await auth0.getSession()
 
    return (
       <Sidebar>
@@ -34,7 +30,7 @@ export function SidebarWidget() {
                         <Button
                            className="w-full justify-start"
                            variant="ghost"
-                           disabled={pathname === value.to}>
+                           disabled={globalThis?.location?.href === value.to}>
                            <Link href={value.to}>{value.name}</Link>
                         </Button>
                      </SidebarMenuItem>
@@ -44,8 +40,8 @@ export function SidebarWidget() {
          </SidebarContent>
 
          <SidebarFooter>
-            {isAuthenticated ? (
-               <UserChip data={user}>
+            {session?.user ? (
+               <UserChip data={session.user}>
                   <LogoutButton />
                </UserChip>
             ) : (
