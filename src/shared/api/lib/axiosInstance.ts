@@ -1,9 +1,9 @@
 import axios from "axios"
 
 export const axiosInstance = axios.create({
-   baseURL: process.env.NEXT_PUBLIC_API_URL,
+   baseURL: process.env.COIN_GECKO_API_URL,
    headers: {
-      "x-cg-demo-api-key": process.env.NEXT_PUBLIC_API_KEY,
+      "x-cg-demo-api-key": process.env.COIN_GECKO_API_KEY,
    },
 })
 
