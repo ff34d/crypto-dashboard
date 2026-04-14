@@ -7,11 +7,7 @@ interface MenuConfigItem {
 
 export const menuConfig: MenuConfigItem[] = [
    {
-      to: Routes.MAIN,
+      to: Routes.DASHBOARD,
       name: "Dashboard",
-   },
-   {
-      to: Routes.SETTINGS,
-      name: "Settings",
    },
 ]

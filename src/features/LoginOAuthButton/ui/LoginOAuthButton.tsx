@@ -7,7 +7,9 @@ import Link from "next/link"
 export const LoginOAuthButton: React.FC = () => {
    return (
       <Link href={Routes.OAUTH_LOGIN}>
-         <Button variant="secondary">
+         <Button
+            variant="secondary"
+            className="w-full">
             Login by
             <Image
                width={16}

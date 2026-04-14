@@ -6,6 +6,7 @@
 export enum ApiEndpoint {
    // ========== Global ==========
    GET_COINS_MARKETS = "/coins/markets",
+   GET_COINS_LIST_MAP = "/coins/list",
    GET_SEARCH = "/search",
 
    // ========== Coin ==========
