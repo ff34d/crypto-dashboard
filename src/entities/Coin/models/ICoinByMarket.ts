@@ -3,7 +3,7 @@ import type { ICoin } from "./ICoin"
 /**
  * Coin by market, with all the data you need to know about a coin market response.
  *
- * @see {@link https://docs.coingecko.com/reference/coins-markets|Coingecko docs, get coins markets}
+ * @see {@link https://docs.coingecko.com/v3.0.1/reference/coins-markets|Coingecko docs, get coins markets}
  */
 export interface ICoinByMarket extends ICoin {
    image: string
