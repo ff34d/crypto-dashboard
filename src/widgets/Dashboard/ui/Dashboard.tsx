@@ -1,4 +1,4 @@
-import type { ICoinByMarket } from "@entities/Coin"
+import { coinService, type ICoinByMarket } from "@entities/Coin"
 import { MarketCoinsTable } from "@features/MarketCoinsTable"
 
 interface Props {
@@ -13,7 +13,7 @@ export const Dashboard: React.FC<Props> = ({ pagesCount, coinsByMarkets }) => {
 
          <MarketCoinsTable
             pagesCount={pagesCount}
-            coinsByMarkets={coinsByMarkets}
+            coinsByMarkets={coinService.transformCoinsMarketsToDTO(coinsByMarkets)}
          />
       </div>
    )

@@ -1,1 +1,2 @@
-export * from "./CoinTable"
+export * from "./CoinChip"
+export * from "./CoinPercentageChip"
