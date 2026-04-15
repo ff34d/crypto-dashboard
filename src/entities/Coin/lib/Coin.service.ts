@@ -16,12 +16,9 @@ class CoinService {
       )
    }
 
-   async getCoinsMarkets(peerPage: number, page: number) {
+   async getCoinsMarkets(peer_page: number, page: number) {
       return await app.api.get<ICoinByMarket[]>(ApiEndpoint.GET_COINS_MARKETS, {
-         params: {
-            peer_page: peerPage,
-            page,
-         },
+         params: { peer_page, page },
       })
    }
 
@@ -33,7 +30,7 @@ class CoinService {
    transformCoinsMarketsToDTO(data: ICoinByMarket[]): ICoinByMarketsDTO[] {
       return [...data].map((v) => ({
          id: v?.id,
-         market_cap_rank: v?.market_cap_rank,
+         market_cap_rank: v?.market_cap_rank || 0,
          image: v?.image,
          symbol: v?.symbol,
          name: v?.name,
