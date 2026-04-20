@@ -29,7 +29,7 @@ export default function RootLayout({
                <SidebarProvider>
                   <SidebarWidget />
                   <Toaster />
-                  <main className="w-full">{children}</main>
+                  <main className="w-full p-4">{children}</main>
                </SidebarProvider>
             </Auth0Provider>
          </body>

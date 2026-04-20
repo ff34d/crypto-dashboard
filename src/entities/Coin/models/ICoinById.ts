@@ -3,7 +3,7 @@ import type { ICoin } from "./ICoin"
 /**
  * Coin by id, with its details, market data, and other details.
  *
- * @see {@link https://docs.coingecko.com/reference/coins-id|Coingecko docs, get coin by id}
+ * @see {@link https://docs.coingecko.com/v3.0.1/reference/coins-id|Coingecko docs, get coin by id}
  */
 export interface ICoinById extends Omit<ICoin, "image"> {
    preview_listing: boolean
