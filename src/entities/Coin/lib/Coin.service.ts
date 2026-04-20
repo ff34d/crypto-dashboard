@@ -1,10 +1,11 @@
 import { ApiEndpoint } from "@shared/api"
-import { app, Mapper } from "@shared/lib"
+import { app } from "@shared/lib"
+import { requestWithCache } from "@shared/utils"
 import type { ICoinByListMap, ICoinByMarket, ICoinByMarketsDTO } from "../models"
 
 class CoinService {
    async getCoinsListMapCached() {
-      return Mapper.requestWithCache(
+      return requestWithCache(
          async () => {
             const { data } = await app.api.get<ICoinByListMap[]>(
                ApiEndpoint.GET_COINS_LIST_MAP,
