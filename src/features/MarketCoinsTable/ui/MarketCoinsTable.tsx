@@ -1,7 +1,8 @@
 "use client"
 
-import type { ICoinByMarketsDTO } from "@entities/Coin"
-import { CoinChip, CoinPercentageChip } from "@entities/Coin"
+import type { ICoin, ICoinByMarketsDTO } from "@entities/Coin"
+import { CoinChip, CoinChipStar, CoinPercentageChip } from "@entities/Coin"
+import { coinStarredRepository } from "@entities/Coin/lib/CoinStarred.repository"
 import { CURRENCY_CHAR } from "@shared/configs"
 import {
    Pagination,
@@ -20,6 +21,7 @@ import {
    TableRow,
 } from "@shared/ui/shadcn/ui/table"
 import { useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
 
 interface Props {
    pagesCount: number
@@ -37,6 +39,27 @@ export function MarketCoinsTable({ pagesCount, coinsByMarkets }: Props) {
 
 // ========== Table ==========
 function MarketCoinsTableTable({ coinsByMarkets }: Pick<Props, "coinsByMarkets">) {
+   const [starredRepo, setStarredRepo] =
+      useState<ReturnType<typeof coinStarredRepository.getAll>>()
+
+   const handleStarredClick = (id: ICoin["id"]) => {
+      if (starredRepo?.includes(id)) {
+         coinStarredRepository.removeStarredCoinById(id)
+      } else {
+         coinStarredRepository.addStarredCoinById(id)
+      }
+
+      handleUpdateStarredRepo()
+   }
+
+   const handleUpdateStarredRepo = () => {
+      setStarredRepo(coinStarredRepository.getAll())
+   }
+
+   useEffect(() => {
+      handleUpdateStarredRepo()
+   }, [])
+
    return (
       <Table>
          <TableHeader>
@@ -62,8 +85,12 @@ function MarketCoinsTableTable({ coinsByMarkets }: Pick<Props, "coinsByMarkets">
                         <CoinChip
                            image={v.image}
                            name={v.name}
-                           symbol={v.symbol}
-                        />
+                           symbol={v.symbol}>
+                           <CoinChipStar
+                              onClick={() => handleStarredClick(v.id)}
+                              isActive={starredRepo?.includes(v.id)}
+                           />
+                        </CoinChip>
                      </TableCell>
 
                      <TableCell>

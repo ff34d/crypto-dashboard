@@ -1,12 +1,18 @@
+import { Star } from "lucide-react"
 import Image from "next/image"
+import type { ReactNode } from "react"
 
-interface Props {
+interface CoinChipProps {
    name: string
    image?: string
    symbol?: string
+   children?: ReactNode
 }
 
-export const CoinChip: React.FC<Props> = ({ name, image, symbol }) => {
+/**
+ * Children position after symbol
+ */
+export const CoinChip: React.FC<CoinChipProps> = ({ name, children, image, symbol }) => {
    return (
       <div className="flex gap-2 items-center">
          {image && (
@@ -20,6 +26,27 @@ export const CoinChip: React.FC<Props> = ({ name, image, symbol }) => {
          )}
          <span>{name}</span>
          <span className="opacity-50 text-sm">{symbol}</span>
+         {children}
       </div>
+   )
+}
+
+interface CoinChipStarProps {
+   isActive?: boolean
+   onClick: VoidFunction
+}
+
+export const CoinChipStar: React.FC<CoinChipStarProps> = ({ onClick, isActive }) => {
+   return (
+      <button
+         className="transition-opacity hover:opacity-50"
+         style={{ opacity: isActive ? 1 : 0.1 }}
+         onClick={onClick}>
+         <Star
+            style={isActive ? { fill: "yellow", stroke: "yellow" } : undefined}
+            width={15}
+            height={15}
+         />
+      </button>
    )
 }

@@ -31,10 +31,10 @@ class CoinService {
    transformCoinsMarketsToDTO(data: ICoinByMarket[]): ICoinByMarketsDTO[] {
       return [...data].map((v) => ({
          id: v?.id,
-         market_cap_rank: v?.market_cap_rank || 0,
          image: v?.image,
          symbol: v?.symbol,
          name: v?.name,
+         market_cap_rank: v?.market_cap_rank || 0,
          price_change_percentage_24h: v?.price_change_percentage_24h || 0,
          current_price: v?.current_price?.toLocaleString() || "0",
          low_24h: v?.low_24h?.toLocaleString() || "0",
