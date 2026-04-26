@@ -5,6 +5,10 @@ export class Repository {
       this.#KEY = key
    }
 
+   public getNoSerialize(): string | undefined | null {
+      return this.#getFromStore(this.#KEY)
+   }
+
    protected get<T>(): T | undefined {
       const m = this.#getFromStore(this.#KEY)
       if (!m) return undefined
@@ -21,11 +25,11 @@ export class Repository {
    }
 
    #getFromStore(key: string): string | undefined | null {
-      return globalThis.localStorage.getItem(key)
+      return globalThis.localStorage?.getItem(key)
    }
 
    #setToStore<T>(key: string, data: T): void {
-      return globalThis.localStorage.setItem(key, this.#toString(data))
+      return globalThis.localStorage?.setItem(key, this.#toString(data))
    }
 
    #serialize<T>(value: string): T | undefined {

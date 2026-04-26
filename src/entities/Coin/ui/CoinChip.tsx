@@ -1,3 +1,4 @@
+import { cn } from "@shared/ui/shadcn/lib/utils"
 import { Star } from "lucide-react"
 import Image from "next/image"
 import type { ReactNode } from "react"
@@ -43,7 +44,7 @@ export const CoinChipStar: React.FC<CoinChipStarProps> = ({ onClick, isActive })
          style={{ opacity: isActive ? 1 : 0.1 }}
          onClick={onClick}>
          <Star
-            style={isActive ? { fill: "yellow", stroke: "yellow" } : undefined}
+            className={cn(isActive ? "fill-yellow-500 stroke-yellow-500" : undefined)}
             width={15}
             height={15}
          />
