@@ -1,16 +1,9 @@
 "use client"
 
-import type { ICoinByMarketsDTO } from "@entities/Coin"
-import { CoinChip, CoinPercentageChip } from "@entities/Coin"
+import type { ICoin, ICoinByMarketsDTO } from "@entities/Coin"
+import { CoinPercentageChip, coinStarredRepository } from "@entities/Coin"
+import { CoinChip, CoinChipStar } from "@entities/Coin/ui/CoinChip"
 import { CURRENCY_CHAR } from "@shared/configs"
-import {
-   Pagination,
-   PaginationContent,
-   PaginationItem,
-   PaginationLink,
-   PaginationNext,
-   PaginationPrevious,
-} from "@shared/ui/shadcn/ui/pagination"
 import {
    Table,
    TableBody,
@@ -20,23 +13,46 @@ import {
    TableRow,
 } from "@shared/ui/shadcn/ui/table"
 import { useSearchParams } from "next/navigation"
+import { useEffect, useMemo, useState } from "react"
 
 interface Props {
-   pagesCount: number
-   coinsByMarkets: ICoinByMarketsDTO[]
+   coins: ICoinByMarketsDTO[]
+   queryKeyStarred: string
 }
 
-export function MarketCoinsTable({ pagesCount, coinsByMarkets }: Props) {
-   return (
-      <div>
-         <MarketCoinsTableTable coinsByMarkets={coinsByMarkets} />
-         <MarketCoinsTablePagination pagesCount={pagesCount} />
-      </div>
-   )
-}
+type StarRepoState = ReturnType<typeof coinStarredRepository.getAll>
 
-// ========== Table ==========
-function MarketCoinsTableTable({ coinsByMarkets }: Pick<Props, "coinsByMarkets">) {
+export function CoinsTable({ coins, queryKeyStarred }: Props) {
+   const [starRepo, setStarRepo] = useState<StarRepoState>()
+   const params = useSearchParams()
+
+   const tableData = useMemo(() => {
+      const data = [...coins]
+
+      if (params.get(queryKeyStarred) && starRepo?.length) {
+         data.sort(
+            (a, b) => Number(starRepo?.includes(b.id)) - Number(starRepo?.includes(a.id)),
+         )
+      }
+
+      return data
+   }, [coins, params, starRepo, queryKeyStarred])
+
+   const handleStarredClick = (id: ICoin["id"]) => {
+      if (starRepo?.includes(id)) {
+         coinStarredRepository.removeStarredCoinById(id)
+      } else {
+         coinStarredRepository.addStarredCoinById(id)
+      }
+
+      setStarRepo(coinStarredRepository.getAll())
+   }
+
+   useEffect(() => {
+      // eslint-disable-next-line
+      setStarRepo(coinStarredRepository.getAll())
+   }, [])
+
    return (
       <Table>
          <TableHeader>
@@ -53,7 +69,7 @@ function MarketCoinsTableTable({ coinsByMarkets }: Pick<Props, "coinsByMarkets">
          </TableHeader>
 
          <TableBody>
-            {coinsByMarkets?.map((v) => {
+            {tableData?.map((v) => {
                return (
                   <TableRow key={v.id}>
                      <TableCell>{v.market_cap_rank}</TableCell>
@@ -62,8 +78,12 @@ function MarketCoinsTableTable({ coinsByMarkets }: Pick<Props, "coinsByMarkets">
                         <CoinChip
                            image={v.image}
                            name={v.name}
-                           symbol={v.symbol}
-                        />
+                           symbol={v.symbol}>
+                           <CoinChipStar
+                              onClick={() => handleStarredClick(v.id)}
+                              isActive={starRepo?.includes(v.id)}
+                           />
+                        </CoinChip>
                      </TableCell>
 
                      <TableCell>
@@ -94,43 +114,5 @@ function MarketCoinsTableTable({ coinsByMarkets }: Pick<Props, "coinsByMarkets">
             })}
          </TableBody>
       </Table>
-   )
-}
-
-// ========== Pagination ==========
-function MarketCoinsTablePagination({ pagesCount }: Pick<Props, "pagesCount">) {
-   const params = useSearchParams()
-   const page = Number(params.get("page")) || 1
-
-   return (
-      <Pagination>
-         <PaginationContent>
-            <PaginationItem>
-               <PaginationPrevious
-                  href={`?page=${page - 1}`}
-                  disabled={page === 1}
-               />
-            </PaginationItem>
-
-            {Array.from({ length: pagesCount }, (_, i) => i + 1).map((i) => {
-               return (
-                  <PaginationItem key={i}>
-                     <PaginationLink
-                        href={`?page=${i}`}
-                        isActive={i === page}>
-                        {i}
-                     </PaginationLink>
-                  </PaginationItem>
-               )
-            })}
-
-            <PaginationItem>
-               <PaginationNext
-                  href={`?page=${page + 1}`}
-                  disabled={page === pagesCount}
-               />
-            </PaginationItem>
-         </PaginationContent>
-      </Pagination>
    )
 }

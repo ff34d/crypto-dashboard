@@ -1,3 +1,3 @@
 export * from "./App"
 export * from "./Logger"
-export * from "./Mapper"
+export * from "./Repository"

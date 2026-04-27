@@ -24,7 +24,7 @@ async function DashboardPageCoinsMarketsTable({ searchParams }: Props) {
    const coinsList = await coinService.getCoinsListMapCached()
    const pagesCount = Math.round(coinsList.length / COINS_MARKETS_PEER_PAGE) - 1
 
-   const coinsMarkets = await coinService.getCoinsMarkets(
+   const coinsMarketsResponse = await coinService.getCoinsMarkets(
       COINS_MARKETS_PEER_PAGE,
       currentPage,
    )
@@ -32,7 +32,7 @@ async function DashboardPageCoinsMarketsTable({ searchParams }: Props) {
    return (
       <Dashboard
          pagesCount={pagesCount}
-         coinsByMarkets={coinsMarkets.data}
+         coinsByMarkets={coinsMarketsResponse.data}
       />
    )
 }

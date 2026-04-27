@@ -30,9 +30,9 @@ export async function SidebarWidget() {
                         <Button
                            className="w-full justify-start"
                            variant="ghost"
-                           disabled={globalThis?.location?.href === value.to}>
-                           <Link href={value.to}>{value.name}</Link>
-                        </Button>
+                           nativeButton={false}
+                           render={<Link href={value.to}>{value.name}</Link>}
+                        />
                      </SidebarMenuItem>
                   ))}
                </SidebarMenu>
