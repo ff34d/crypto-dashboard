@@ -10,7 +10,6 @@ import {
    ItemActions,
    ItemContent,
    ItemDescription,
-   ItemFooter,
    ItemMedia,
    ItemTitle,
 } from "@shared/ui/shadcn/ui/item"
@@ -41,9 +40,7 @@ export const UserChip: React.FC<Props> = ({ data, children }) => {
             <ItemDescription>{data?.email}</ItemDescription>
          </ItemContent>
 
-         <ItemFooter>
-            {children && <ItemActions className="ml-auto">{children}</ItemActions>}
-         </ItemFooter>
+         {children && <ItemActions>{children}</ItemActions>}
       </Item>
    )
 }

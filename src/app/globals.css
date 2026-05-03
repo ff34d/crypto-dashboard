@@ -84,6 +84,7 @@ button {
    --sidebar-accent-foreground: oklch(20.5% 0 0deg);
    --sidebar-border: oklch(92.2% 0 0deg);
    --sidebar-ring: oklch(70.8% 0 0deg);
+   --layout-width: 80dvw;
 }
 
 .dark {
